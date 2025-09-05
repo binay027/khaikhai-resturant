@@ -8,18 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Earthy Appetite -->
+    <!-- Chosen Palette: Modern Gold -->
     <!-- Application Structure Plan: A single-page application with a sticky navigation bar for easy access to different thematic sections: Hero, About, Menu, Reservation, Gallery, Reviews, and Contact. This structure is chosen for its intuitive, linear flow, allowing users to naturally discover the restaurant's offerings from top to bottom, while the nav bar provides quick access for task-oriented users (e.g., someone just wanting to book a table). The menu will be interactive with filters to prevent information overload. -->
     <!-- Visualization & Content Choices: Hero Section -> Goal: Attract -> Method: Full-width background image with CTA -> Interaction: Button click scrolls to reservation. Menu -> Goal: Organize/Inform -> Method: Card-based layout with category filters -> Interaction: JS-powered filtering to show/hide items. Reservation -> Goal: Action -> Method: Simple HTML form -> Interaction: Form submission with JS confirmation. Gallery -> Goal: Showcase -> Method: Tailwind CSS Grid -> Interaction: Static display. Reviews -> Goal: Build Trust -> Method: Card layout. Location -> Goal: Inform -> Method: Text and map placeholder. Justification: These choices prioritize a clean, visual, and task-oriented user experience suitable for a restaurant website. NO SVG/Mermaid used. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background-color: #FDF8F0;
-            color: #4A4A4A;
+            background-color: #F8FAFC; /* Light Slate */
+            color: #1E293B; /* Dark Slate */
         }
         .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x1080/634832/FDF8F0?text=Khaikhai+Cafe');
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x1080/0F172A/F8FAFC?text=Khaikhai+Cafe');
             background-size: cover;
             background-position: center;
         }
@@ -42,17 +42,17 @@
             bottom: -4px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #C89F76;
+            background-color: #F59E0B; /* Amber/Gold */
             transition: width 0.3s ease-in-out;
         }
         .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
         }
         .btn-primary {
-            background-color: #A0522D;
-            color: #FDF8F0;
+            background-color: #F59E0B;
+            color: #ffffff;
             transition: background-color 0.3s, transform 0.3s;
-            background-image: linear-gradient(to right, #A0522D 0%, #8B4513 51%, #A0522D 100%);
+            background-image: linear-gradient(to right, #F59E0B 0%, #D97706 51%, #F59E0B 100%);
             background-size: 200% auto;
         }
         .btn-primary:hover {
@@ -61,16 +61,16 @@
         }
         .btn-secondary {
             background-color: transparent;
-            color: #A0522D;
-            border: 2px solid #A0522D;
+            color: #D97706;
+            border: 2px solid #D97706;
             transition: background-color 0.3s, color 0.3s;
         }
         .btn-secondary:hover {
-            background-color: #A0522D;
-            color: #FDF8F0;
+            background-color: #D97706;
+            color: #FFFFFF;
         }
         .section-title {
-            color: #634832;
+            color: #0F172A; /* Darkest Slate */
         }
         /* New Animation Styles */
         .fade-in-section {
@@ -93,32 +93,32 @@
 </head>
 <body class="antialiased">
 
-    <header id="header" class="bg-[#FDF8F0]/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <header id="header" class="bg-slate-50/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-[#634832]">খাইখাই ক্যাফে</a>
+            <a href="#" class="text-2xl font-bold text-slate-900">খাইখাই ক্যাফে</a>
             <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link active">হোম</a>
-                <a href="#menu" class="nav-link">মেনু</a>
-                <a href="#online-order" class="nav-link">অনলাইন অর্ডার</a>
-                <a href="#reservation" class="nav-link">রিজার্ভেশন</a>
-                <a href="#gallery" class="nav-link">গ্যালারি</a>
-                <a href="#reviews" class="nav-link">রিভিউ</a>
-                <a href="#contact" class="nav-link">যোগাযোগ</a>
+                <a href="#home" class="nav-link active text-slate-700 hover:text-slate-900">হোম</a>
+                <a href="#menu" class="nav-link text-slate-700 hover:text-slate-900">মেনু</a>
+                <a href="#online-order" class="nav-link text-slate-700 hover:text-slate-900">অনলাইন অর্ডার</a>
+                <a href="#reservation" class="nav-link text-slate-700 hover:text-slate-900">রিজার্ভেশন</a>
+                <a href="#gallery" class="nav-link text-slate-700 hover:text-slate-900">গ্যালারি</a>
+                <a href="#reviews" class="nav-link text-slate-700 hover:text-slate-900">রিভিউ</a>
+                <a href="#contact" class="nav-link text-slate-700 hover:text-slate-900">যোগাযোগ</a>
             </div>
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                <button id="mobile-menu-button" class="text-slate-700 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#home" class="block py-2 px-4 text-sm hover:bg-[#EAE0D5]">হোম</a>
-            <a href="#menu" class="block py-2 px-4 text-sm hover:bg-[#EAE0D5]">মেনু</a>
-            <a href="#online-order" class="block py-2 px-4 text-sm hover:bg-[#EAE0D5]">অনলাইন অর্ডার</a>
-            <a href="#reservation" class="block py-2 px-4 text-sm hover:bg-[#EAE0D5]">রিজার্ভেশন</a>
-            <a href="#gallery" class="block py-2 px-4 text-sm hover:bg-[#EAE0D5]">গ্যালারি</a>
-            <a href="#reviews" class="block py-2 px-4 text-sm hover:bg-[#EAE0D5]">রিভিউ</a>
-            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-[#EAE0D5]">যোগাযোগ</a>
+            <a href="#home" class="block py-2 px-4 text-sm hover:bg-slate-100">হোম</a>
+            <a href="#menu" class="block py-2 px-4 text-sm hover:bg-slate-100">মেনু</a>
+            <a href="#online-order" class="block py-2 px-4 text-sm hover:bg-slate-100">অনলাইন অর্ডার</a>
+            <a href="#reservation" class="block py-2 px-4 text-sm hover:bg-slate-100">রিজার্ভেশন</a>
+            <a href="#gallery" class="block py-2 px-4 text-sm hover:bg-slate-100">গ্যালারি</a>
+            <a href="#reviews" class="block py-2 px-4 text-sm hover:bg-slate-100">রিভিউ</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-slate-100">যোগাযোগ</a>
         </div>
     </header>
 
@@ -146,20 +146,20 @@
             </div>
         </section>
 
-        <section id="online-order" class="py-20 bg-[#EAE0D5]">
+        <section id="online-order" class="py-20 bg-slate-100">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold text-center mb-12 section-title">অনলাইনে খাবার অর্ডার করুন</h2>
                 <div class="flex flex-col lg:flex-row gap-12">
                     <div class="lg:w-3/5">
-                        <h3 class="text-2xl font-semibold mb-6 text-[#634832]">মেনু থেকে বেছে নিন</h3>
+                        <h3 class="text-2xl font-semibold mb-6 text-slate-800">মেনু থেকে বেছে নিন</h3>
                         <div id="order-items" class="grid md:grid-cols-2 gap-6">
                         </div>
                     </div>
                     <div class="lg:w-2/5">
                         <div class="bg-white p-6 rounded-lg shadow-lg sticky top-24">
-                            <h3 class="text-2xl font-semibold mb-6 border-b pb-4 text-[#634832]">আপনার অর্ডার</h3>
+                            <h3 class="text-2xl font-semibold mb-6 border-b pb-4 text-slate-800">আপনার অর্ডার</h3>
                             <div id="cart-items" class="space-y-4 mb-6 max-h-60 overflow-y-auto">
-                                <p id="cart-empty-msg" class="text-gray-500">আপনার কার্ট খালি।</p>
+                                <p id="cart-empty-msg" class="text-slate-500">আপনার কার্ট খালি।</p>
                             </div>
                             <div class="border-t pt-4 mb-6">
                                 <div class="flex justify-between font-bold text-lg">
@@ -169,9 +169,9 @@
                             </div>
                             <h4 class="text-xl font-semibold mb-4">ডেলিভারি তথ্য</h4>
                             <form id="order-form">
-                                <input type="text" placeholder="আপনার নাম" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C89F76]" required>
-                                <input type="text" placeholder="সম্পূর্ণ ঠিকানা" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C89F76]" required>
-                                <input type="tel" placeholder="ফোন নম্বর" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C89F76]" required>
+                                <input type="text" placeholder="আপনার নাম" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                                <input type="text" placeholder="সম্পূর্ণ ঠিকানা" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                                <input type="tel" placeholder="ফোন নম্বর" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                                 <h4 class="text-xl font-semibold mb-4">পেমেন্ট পদ্ধতি</h4>
                                 <div class="space-y-3 mb-6">
                                     <label class="flex items-center p-3 border rounded-lg hover:bg-gray-100 cursor-pointer">
@@ -195,28 +195,28 @@
         <section id="reservation" class="py-20">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold text-center mb-12 section-title">আপনার টেবিল রিজার্ভ করুন</h2>
-                <div class="max-w-2xl mx-auto bg-[#FDF8F0] p-8 rounded-lg shadow-lg">
+                <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
                     <form id="booking-form">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div class="mb-4">
                                 <label for="name" class="block mb-2 font-medium">নাম</label>
-                                <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C89F76]" required>
+                                <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                             </div>
                             <div class="mb-4">
                                 <label for="phone" class="block mb-2 font-medium">ফোন নম্বর</label>
-                                <input type="tel" id="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C89F76]" required>
+                                <input type="tel" id="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                             </div>
                             <div class="mb-4">
                                 <label for="date" class="block mb-2 font-medium">তারিখ</label>
-                                <input type="date" id="date" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C89F76]" required>
+                                <input type="date" id="date" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                             </div>
                             <div class="mb-4">
                                 <label for="time" class="block mb-2 font-medium">সময়</label>
-                                <input type="time" id="time" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C89F76]" required>
+                                <input type="time" id="time" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                             </div>
                             <div class="mb-4 md:col-span-2">
                                 <label for="guests" class="block mb-2 font-medium">অতিথির সংখ্যা</label>
-                                <input type="number" id="guests" min="1" max="10" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C89F76]" required>
+                                <input type="number" id="guests" min="1" max="10" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                             </div>
                         </div>
                         <div class="text-center mt-6">
@@ -232,29 +232,29 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold text-center mb-12 section-title">আমাদের খাবারের ঝলক</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/400x400/A0522D/FFFFFF?text=Dish+1" alt="খাবার ১" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"></div>
-                    <div class="overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/400x400/8B4513/FFFFFF?text=Dish+2" alt="খাবার ২" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"></div>
-                    <div class="overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/400x400/634832/FFFFFF?text=Dish+3" alt="খাবার ৩" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"></div>
-                    <div class="overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/400x400/C89F76/FFFFFF?text=Dish+4" alt="খাবার ৪" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"></div>
+                    <div class="overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/400x400/F59E0B/FFFFFF?text=Dish+1" alt="খাবার ১" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"></div>
+                    <div class="overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/400x400/D97706/FFFFFF?text=Dish+2" alt="খাবার ২" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"></div>
+                    <div class="overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/400x400/0F172A/FFFFFF?text=Dish+3" alt="খাবার ৩" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"></div>
+                    <div class="overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/400x400/1E293B/FFFFFF?text=Dish+4" alt="খাবার ৪" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"></div>
                 </div>
             </div>
         </section>
 
-        <section id="reviews" class="py-20 bg-[#EAE0D5]">
+        <section id="reviews" class="py-20 bg-slate-100">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold text-center mb-12 section-title">ক্রেতাদের মতামত</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-[#FDF8F0] p-6 rounded-lg shadow-md review-card">
+                    <div class="bg-white p-6 rounded-lg shadow-md review-card">
                         <p class="mb-4">"খাবারের মান অসাধারণ! আবার আসব।"</p>
                         <div class="font-bold">- সুমন রায়</div>
                         <div class="text-yellow-500">★★★★★</div>
                     </div>
-                    <div class="bg-[#FDF8F0] p-6 rounded-lg shadow-md review-card">
+                    <div class="bg-white p-6 rounded-lg shadow-md review-card">
                         <p class="mb-4">"বন্ধুদের সাথে আড্ডার জন্য সেরা জায়গা।"</p>
                         <div class="font-bold">- প্রিয়াঙ্কা দাস</div>
                         <div class="text-yellow-500">★★★★☆</div>
                     </div>
-                    <div class="bg-[#FDF8F0] p-6 rounded-lg shadow-md review-card">
+                    <div class="bg-white p-6 rounded-lg shadow-md review-card">
                         <p class="mb-4">"স্টাফদের ব্যবহার খুব ভালো। সবাই খুব খুশি।"</p>
                         <div class="font-bold">- আহমেদ চৌধুরী</div>
                         <div class="text-yellow-500">★★★★★</div>
@@ -266,51 +266,51 @@
         <section id="contact" class="py-20">
             <div class="container mx-auto px-6">
                  <h2 class="text-4xl font-bold text-center mb-12 section-title">যোগাযোগ করুন</h2>
-                <div class="flex flex-col md:flex-row gap-10">
+                <div class="flex flex-col md:flex-row gap-10 items-center">
                     <div class="md:w-1/2">
-                        <h3 class="text-2xl font-semibold mb-4 text-[#634832]">আমাদের ঠিকানা</h3>
+                        <h3 class="text-2xl font-semibold mb-4 text-slate-900">আমাদের ঠিকানা</h3>
                         <p class="mb-2">১২৩, পার্ক স্ট্রিট, কলকাতা - ৭০০০১৬</p>
                         <p class="mb-2"><strong>ফোন:</strong> +৯১ ৯৮৭৬৫ ৪৩২১০</p>
                         <p class="mb-4"><strong>ইমেল:</strong> contact@khaikhaicafe.com</p>
                     </div>
                     <div class="md:w-1/2 h-80 md:h-auto rounded-lg overflow-hidden">
-                        <img src="https://placehold.co/600x400/EAE0D5/4A4A4A?text=Google+Map" alt="Map" class="w-full h-full object-cover">
+                        <img src="https://placehold.co/600x400/F1F5F9/1E293B?text=Google+Map" alt="Map" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-[#634832] text-[#FDF8F0]">
+    <footer class="bg-slate-900 text-slate-300">
         <div class="container mx-auto px-6 py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">খাইখাই ক্যাফে</h3>
-                    <p class="text-gray-300">শহরের সেরা খাবার আপনার অপেক্ষায়।</p>
+                    <h3 class="text-xl font-bold text-white mb-4">খাইখাই ক্যাফে</h3>
+                    <p class="text-slate-400">শহরের সেরা খাবার আপনার অপেক্ষায়।</p>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">গুরুত্বপূর্ণ লিংক</h3>
+                    <h3 class="text-lg font-semibold text-white mb-4">গুরুত্বপূর্ণ লিংক</h3>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="hover:text-[#C89F76]">হোম</a></li>
-                        <li><a href="#menu" class="hover:text-[#C89F76]">মেনু</a></li>
-                        <li><a href="#reservation" class="hover:text-[#C89F76]">রিজার্ভেশন</a></li>
+                        <li><a href="#home" class="hover:text-amber-400">হোম</a></li>
+                        <li><a href="#menu" class="hover:text-amber-400">মেনু</a></li>
+                        <li><a href="#reservation" class="hover:text-amber-400">রিজার্ভেশন</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">যোগাযোগ</h3>
-                    <p class="text-gray-300 mb-2">১২৩, পার্ক স্ট্রিট, কলকাতা</p>
-                    <p class="text-gray-300 mb-2">contact@khaikhaicafe.com</p>
-                    <p class="text-gray-300">+৯১ ৯৮৭৬৫ ৪৩২১০</p>
+                    <h3 class="text-lg font-semibold text-white mb-4">যোগাযোগ</h3>
+                    <p class="text-slate-400 mb-2">১২৩, পার্ক স্ট্রিট, কলকাতা</p>
+                    <p class="text-slate-400 mb-2">contact@khaikhaicafe.com</p>
+                    <p class="text-slate-400">+৯১ ৯৮৭৬৫ ৪৩২১০</p>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">আমাদের ফলো করুন</h3>
+                    <h3 class="text-lg font-semibold text-white mb-4">আমাদের ফলো করুন</h3>
                     <div class="flex space-x-4">
-                        <a href="#" aria-label="Facebook" class="text-gray-300 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
-                        <a href="#" aria-label="Instagram" class="text-gray-300 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7.177a4.823 4.823 0 100 9.646 4.823 4.823 0 000-9.646zm0 7.661a2.838 2.838 0 110-5.676 2.838 2.838 0 010 5.676zm4.905-7.854a1.148 1.148 0 10-2.296 0 1.148 1.148 0 002.296 0z" clip-rule="evenodd" /></svg></a>
+                        <a href="#" aria-label="Facebook" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                        <a href="#" aria-label="Instagram" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7.177a4.823 4.823 0 100 9.646 4.823 4.823 0 000-9.646zm0 7.661a2.838 2.838 0 110-5.676 2.838 2.838 0 010 5.676zm4.905-7.854a1.148 1.148 0 10-2.296 0 1.148 1.148 0 002.296 0z" clip-rule="evenodd" /></svg></a>
                     </div>
                 </div>
             </div>
-            <div class="mt-8 pt-8 border-t border-gray-500/30 text-center text-gray-400">
+            <div class="mt-8 pt-8 border-t border-slate-700/50 text-center text-slate-500">
                 <p>&copy; ২০২৫ খাইখাই ক্যাফে। সর্বস্বত্ব সংরক্ষিত।</p>
             </div>
         </div>
@@ -325,14 +325,14 @@
 
     <script>
         const menuData = [
-            { id: 1, name: 'চিকেন পকোড়া', category: 'starter', price: '₹১৮০', desc: 'মচমচে ও রসালো চিকেনের সুস্বাদু পকোড়া।', image: 'https://placehold.co/300x200/A0522D/FFFFFF?text=Chicken+Pakora' },
-            { id: 2, name: 'চিলি পনির', category: 'starter', price: '₹২২০', desc: 'পনিরের সাথে ক্যাপসিকাম ও পেঁয়াজের ঝাল-মিষ্টি স্বাদ।', image: 'https://placehold.co/300x200/8B4513/FFFFFF?text=Chilli+Paneer' },
-            { id: 3, name: 'মাটন বিরিয়ানি', category: 'main', price: '₹৩৫০', desc: 'ঐতিহ্যবাহী মশলায় রান্না করা সুগন্ধি বিরিয়ানি।', image: 'https://placehold.co/300x200/634832/FFFFFF?text=Mutton+Biryani' },
-            { id: 4, name: 'মালাই কোফতা', category: 'main', price: '₹২৮০', desc: 'নরম কোফতার সাথে ক্রিমি গ্রেভির মেলবন্ধন।', image: 'https://placehold.co/300x200/C89F76/FFFFFF?text=Malai+Kofta' },
-            { id: 5, name: 'চকলেট লাভা কেক', category: 'dessert', price: '₹২০০', desc: 'গরম গলানো চকলেটে ভরা নরম কেক।', image: 'https://placehold.co/300x200/D2B48C/FFFFFF?text=Choco+Lava+Cake' },
-            { id: 6, name: 'ফিরনি', category: 'dessert', price: '₹১২০', desc: 'চালের গুঁড়ো আর দুধ দিয়ে বানানো মিষ্টি।', image: 'https://placehold.co/300x200/BC8F8F/FFFFFF?text=Firni' },
-            { id: 7, name: 'কোল্ড কফি', category: 'drinks', price: '₹১৫০', desc: 'আইসক্রিমের সাথে ঠান্ডা রিফ্রেশিং কফি।', image: 'https://placehold.co/300x200/856D4D/FFFFFF?text=Cold+Coffee' },
-            { id: 8, name: 'ম্যাঙ্গো লস্যি', category: 'drinks', price: '₹১৩০', desc: 'টাটকা আম আর দই দিয়ে বানানো মিষ্টি লস্যি।', image: 'https://placehold.co/300x200/9C7C5B/FFFFFF?text=Mango+Lassi' }
+            { id: 1, name: 'চিকেন পকোড়া', category: 'starter', price: '₹১৮০', desc: 'মচমচে ও রসালো চিকেনের সুস্বাদু পকোড়া।', image: 'https://placehold.co/300x200/F59E0B/FFFFFF?text=Chicken+Pakora' },
+            { id: 2, name: 'চিলি পনির', category: 'starter', price: '₹২২০', desc: 'পনিরের সাথে ক্যাপসিকাম ও পেঁয়াজের ঝাল-মিষ্টি স্বাদ।', image: 'https://placehold.co/300x200/D97706/FFFFFF?text=Chilli+Paneer' },
+            { id: 3, name: 'মাটন বিরিয়ানি', category: 'main', price: '₹৩৫০', desc: 'ঐতিহ্যবাহী মশলায় রান্না করা সুগন্ধি বিরিয়ানি।', image: 'https://placehold.co/300x200/0F172A/FFFFFF?text=Mutton+Biryani' },
+            { id: 4, name: 'মালাই কোফতা', category: 'main', price: '₹২৮০', desc: 'নরম কোফতার সাথে ক্রিমি গ্রেভির মেলবন্ধন।', image: 'https://placehold.co/300x200/1E293B/FFFFFF?text=Malai+Kofta' },
+            { id: 5, name: 'চকলেট লাভা কেক', category: 'dessert', price: '₹২০০', desc: 'গরম গলানো চকলেটে ভরা নরম কেক।', image: 'https://placehold.co/300x200/FBBF24/FFFFFF?text=Choco+Lava+Cake' },
+            { id: 6, name: 'ফিরনি', category: 'dessert', price: '₹১২০', desc: 'চালের গুঁড়ো আর দুধ দিয়ে বানানো মিষ্টি।', image: 'https://placehold.co/300x200/FCD34D/FFFFFF?text=Firni' },
+            { id: 7, name: 'কোল্ড কফি', category: 'drinks', price: '₹১৫০', desc: 'আইসক্রিমের সাথে ঠান্ডা রিফ্রেশিং কফি।', image: 'https://placehold.co/300x200/FB923C/FFFFFF?text=Cold+Coffee' },
+            { id: 8, name: 'ম্যাঙ্গো লস্যি', category: 'drinks', price: '₹১৩০', desc: 'টাটকা আম আর দই দিয়ে বানানো মিষ্টি লস্যি।', image: 'https://placehold.co/300x200/F97316/FFFFFF?text=Mango+Lassi' }
         ];
 
         const menuItemsContainer = document.getElementById('menu-items');
@@ -354,10 +354,10 @@
                     <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-[#634832]">${item.name}</h3>
-                            <p class="text-lg font-bold text-[#A0522D]">${item.price}</p>
+                            <h3 class="text-xl font-semibold text-slate-800">${item.name}</h3>
+                            <p class="text-lg font-bold text-amber-600">${item.price}</p>
                         </div>
-                        <p class="text-gray-600">${item.desc}</p>
+                        <p class="text-slate-600">${item.desc}</p>
                     </div>
                 </div>
             `).join('');
@@ -369,10 +369,10 @@
                     <img src="${item.image}" alt="${item.name}" class="w-full h-40 object-cover">
                     <div class="p-4 flex flex-col flex-grow">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="font-semibold text-md text-[#634832]">${item.name}</h4>
-                            <p class="font-bold text-md text-[#A0522D]">${item.price}</p>
+                            <h4 class="font-semibold text-md text-slate-800">${item.name}</h4>
+                            <p class="font-bold text-md text-amber-600">${item.price}</p>
                         </div>
-                        <p class="text-gray-600 text-sm mb-4 flex-grow">${item.desc}</p>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow">${item.desc}</p>
                         <button class="add-to-cart-btn mt-auto btn-secondary py-2 px-4 rounded-full text-sm w-full" data-id="${item.id}">কার্টে যোগ করুন</button>
                     </div>
                 </div>
