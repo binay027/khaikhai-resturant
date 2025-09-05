@@ -47,23 +47,18 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
+        /* New Main Navigation Link Styles */
         .nav-link {
-            position: relative;
-            transition: color 0.3s;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease-in-out;
+            font-weight: 500;
         }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #F59E0B; /* Amber/Gold */
-            transition: width 0.3s ease-in-out;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
+        .nav-link:hover, .nav-link.active {
+            background-image: linear-gradient(to right, #F59E0B 0%, #D97706 51%, #F59E0B 100%);
+            background-size: 200% auto;
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
         .btn-primary {
             background-color: #F59E0B;
@@ -86,7 +81,7 @@
             background-color: #D97706;
             color: #FFFFFF;
         }
-        /* New Menu Filter Button Styles */
+        /* Reverted Menu Filter Button Styles */
         .menu-filter-btn {
             background-color: #FFFFFF;
             color: #334155; /* Slate-700 */
@@ -97,12 +92,14 @@
             font-weight: 500;
             box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         }
-        .menu-filter-btn.active, .menu-filter-btn:hover {
-            background-image: linear-gradient(to right, #3B82F6, #2563EB); /* Blue gradient */
+        .menu-filter-btn:hover {
+            border-color: #D97706; /* Amber-600 */
+            color: #D97706;
+        }
+        .menu-filter-btn.active {
+            background-color: #1E293B; /* Dark Slate */
             color: #FFFFFF;
             border-color: transparent;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transform: translateY(-2px);
         }
         .section-title {
             color: #0F172A; /* Darkest Slate */
@@ -131,14 +128,14 @@
     <header id="header" class="bg-slate-50/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-slate-900">খাইখাই ক্যাফে</a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link active text-slate-700 hover:text-slate-900">হোম</a>
-                <a href="#menu" class="nav-link text-slate-700 hover:text-slate-900">মেনু</a>
-                <a href="#online-order" class="nav-link text-slate-700 hover:text-slate-900">অনলাইন অর্ডার</a>
-                <a href="#reservation" class="nav-link text-slate-700 hover:text-slate-900">রিজার্ভেশন</a>
-                <a href="#gallery" class="nav-link text-slate-700 hover:text-slate-900">গ্যালারি</a>
-                <a href="#reviews" class="nav-link text-slate-700 hover:text-slate-900">রিভিউ</a>
-                <a href="#contact" class="nav-link text-slate-700 hover:text-slate-900">যোগাযোগ</a>
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="#home" class="nav-link active text-slate-700">হোম</a>
+                <a href="#menu" class="nav-link text-slate-700">মেনু</a>
+                <a href="#online-order" class="nav-link text-slate-700">অনলাইন অর্ডার</a>
+                <a href="#reservation" class="nav-link text-slate-700">রিজার্ভেশন</a>
+                <a href="#gallery" class="nav-link text-slate-700">গ্যালারি</a>
+                <a href="#reviews" class="nav-link text-slate-700">রিভিউ</a>
+                <a href="#contact" class="nav-link text-slate-700">যোগাযোগ</a>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-slate-700 focus:outline-none">
@@ -342,7 +339,7 @@
                     <h3 class="text-lg font-semibold text-white mb-4">আমাদের ফলো করুন</h3>
                     <div class="flex space-x-4">
                         <a href="#" aria-label="Facebook" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
-                        <a href="#" aria-label="Instagram" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7.177a4.823 4.823 0 100 9.646 4.823 4.823 0 000-9.646zm0 7.661a2.838 2.838 0 110-5.676 2.838 2.838 0 010 5.676zm4.905-7.854a1.148 1.148 0 10-2.296 0 1.148 1.148 0 002.296 0z" clip-rule="evenodd" /></svg></a>
+                        <a href="#" aria-label="Instagram" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427.465C9.53 2.013 9.884 2 12.315 2zM12 7.177a4.823 4.823 0 100 9.646 4.823 4.823 0 000-9.646zm0 7.661a2.838 2.838 0 110-5.676 2.838 2.838 0 010 5.676zm4.905-7.854a1.148 1.148 0 10-2.296 0 1.148 1.148 0 002.296 0z" clip-rule="evenodd" /></svg></a>
                     </div>
                 </div>
             </div>
