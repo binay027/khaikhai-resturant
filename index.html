@@ -121,6 +121,20 @@
              transform: scale(1.05);
              box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
+        /* Payment Modal Styles */
+        .payment-option {
+            border: 2px solid #E2E8F0;
+            transition: all 0.2s ease-in-out;
+        }
+        .payment-option.selected {
+            border-color: #F59E0B;
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
+        }
+        .payment-option:hover {
+             transform: translateY(-2px);
+             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -200,23 +214,12 @@
                                     <span id="cart-total">₹০</span>
                                 </div>
                             </div>
-                            <h4 class="text-xl font-semibold mb-4">ডেলিভারি তথ্য</h4>
                             <form id="order-form">
-                                <input type="text" placeholder="আপনার নাম" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                                <h4 class="text-xl font-semibold mb-4">ডেলিভারি তথ্য</h4>
+                                <input type="text" id="customer-name" placeholder="আপনার নাম" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                                 <input type="text" placeholder="সম্পূর্ণ ঠিকানা" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                                 <input type="tel" placeholder="ফোন নম্বর" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
-                                <h4 class="text-xl font-semibold mb-4">পেমেন্ট পদ্ধতি</h4>
-                                <div class="space-y-3 mb-6">
-                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-100 cursor-pointer">
-                                        <input type="radio" name="payment" value="online" class="mr-3" checked>
-                                        <span>অনলাইন পেমেন্ট (UPI, Card)</span>
-                                    </label>
-                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-100 cursor-pointer">
-                                        <input type="radio" name="payment" value="cod" class="mr-3">
-                                        <span>ক্যাশ অন ডেলিভারি</span>
-                                    </label>
-                                </div>
-                                <button type="submit" class="w-full btn-primary font-bold py-3 px-12 rounded-full text-lg">অর্ডার কনফার্ম করুন</button>
+                                <button type="submit" class="w-full btn-primary font-bold py-3 px-12 rounded-full text-lg">পেমেন্টের জন্য এগিয়ে যান</button>
                             </form>
                             <div id="order-form-message" class="mt-4 text-center"></div>
                         </div>
@@ -355,6 +358,19 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
         </svg>
     </button>
+    
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-6 relative">
+             <button id="close-modal-btn" class="absolute top-3 right-3 text-slate-500 hover:text-slate-800">&times;</button>
+             <h3 class="text-2xl font-bold text-center mb-6 section-title">পেমেন্ট পদ্ধতি বেছে নিন</h3>
+             <div id="payment-options" class="grid grid-cols-2 gap-4 mb-6">
+                 <!-- Payment options will be injected here by JS -->
+             </div>
+             <button id="confirm-payment-btn" class="w-full btn-primary font-bold py-3 px-12 rounded-full text-lg">পেমেন্ট সম্পন্ন করুন</button>
+        </div>
+    </div>
+
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -369,6 +385,16 @@
             { id: 8, name: 'ম্যাঙ্গো লস্যি', category: 'drinks', price: '₹১৩০', desc: 'টাটকা আম আর দই দিয়ে বানানো মিষ্টি লস্যি।', image: 'https://placehold.co/300x200/F97316/FFFFFF?text=Mango+Lassi' }
         ];
 
+        const paymentMethods = [
+            { id: 'gpay', name: 'Google Pay', icon: '<svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.46,9.33L22.46,9.33C22.46,8.7,22.4,8.13,22.28,7.58H11.45v3.45h6.2c-0.27,1.11-0.9,2.07-1.85,2.71v2.23h2.87C21.7,14.65,22.46,12.23,22.46,9.33z"/><path fill="#34A853" d="M11.45,23c2.97,0,5.43-0.98,7.24-2.65l-2.87-2.23c-0.98,0.66-2.23,1.05-3.6,1.05c-2.75,0-5.08-1.85-5.93-4.34H2.78v2.3C4.6,20.86,7.78,23,11.45,23z"/><path fill="#FBBC05" d="M5.52,14.61c-0.27-0.81-0.42-1.67-0.42-2.56s0.16-1.75,0.42-2.56V7.18H2.78C1.84,8.94,1.33,10.95,1.33,13.05c0,2.1,0.51,4.12,1.45,5.87L5.52,14.61z"/><path fill="#EA4335" d="M11.45,5.82c1.61,0,3.04,0.55,4.18,1.62l2.55-2.55C16.47,2.5,14.21,1,11.45,1C7.78,1,4.6,3.14,2.78,6.29l2.74,2.3C6.37,6.03,8.7,4.18,11.45,4.18V5.82z"/></svg>'},
+            { id: 'phonepe', name: 'PhonePe', icon: '<svg class="w-8 h-8" fill="#5f259f" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1.5-12.5h3v2h-3v-2zm-1.5 4h6v2h-6v-2zm3 4.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>'},
+            { id: 'paytm', name: 'Paytm', icon: '<svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#00baf2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.42 15.42L5.5 12.34l1.42-1.42 3.66 3.66 6.34-6.34 1.42 1.42-7.76 7.76z"/></svg>'},
+            { id: 'amazonpay', name: 'Amazon Pay', icon: '<svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#FF9900" d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm1.5,13.88a5.5,5.5,0,0,1-3,0V14.5a3.5,3.5,0,0,0,3,0ZM12,6a1,1,0,0,0-1,1v5a1,1,0,0,0,2,0V7A1,1,0,0,0,12,6Z"/></svg>'},
+            { id: 'card', name: 'Debit/Credit Card', icon: '<svg class="w-8 h-8 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7-5h18v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2V8a2 2 0 012-2h8a2 2 0 012 2v2z"></path></svg>'},
+            { id: 'netbanking', name: 'Net Banking', icon: '<svg class="w-8 h-8 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 3m0 0l3-3m-3 3v10a2 2 0 002 2h10a2 2 0 002-2V9l3 3m-3-3l3-3"></path></svg>'},
+            { id: 'cod', name: 'Cash on Delivery', icon: '<svg class="w-8 h-8 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>'},
+        ];
+
         const menuItemsContainer = document.getElementById('menu-items');
         const filterButtons = document.querySelectorAll('.menu-filter-btn');
         const bookingForm = document.getElementById('booking-form');
@@ -379,8 +405,13 @@
         const cartEmptyMsg = document.getElementById('cart-empty-msg');
         const orderForm = document.getElementById('order-form');
         const orderFormMessage = document.getElementById('order-form-message');
+        const paymentModal = document.getElementById('payment-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const paymentOptionsContainer = document.getElementById('payment-options');
+        const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
         
         let cart = [];
+        let selectedPaymentMethod = null;
 
         const displayMenuItems = (items) => {
             menuItemsContainer.innerHTML = items.map(item => `
@@ -434,6 +465,15 @@
             }
         };
 
+        const renderPaymentOptions = () => {
+            paymentOptionsContainer.innerHTML = paymentMethods.map(method => `
+                <button class="payment-option p-4 rounded-lg flex items-center space-x-4 text-left" data-method="${method.id}">
+                    ${method.icon}
+                    <span class="font-semibold text-slate-700">${method.name}</span>
+                </button>
+            `).join('');
+        };
+
         const addToCart = (itemId) => {
             const itemToAdd = menuData.find(item => item.id == itemId);
             if (itemToAdd) {
@@ -449,6 +489,7 @@
 
         displayMenuItems(menuData);
         renderOrderableItems();
+        renderPaymentOptions();
         updateCartDisplay();
 
         filterButtons.forEach(button => {
@@ -482,7 +523,7 @@
                 removeFromCart(itemIndex);
             }
         });
-
+        
         orderForm.addEventListener('submit', (e) => {
             e.preventDefault();
             if(cart.length === 0) {
@@ -490,12 +531,48 @@
                 setTimeout(() => { orderFormMessage.innerHTML = ''; }, 3000);
                 return;
             }
-            const customerName = orderForm.querySelector('input[type="text"]').value;
-            orderFormMessage.innerHTML = `<p class="text-green-600 font-semibold">ধন্যবাদ, ${customerName}! আপনার অর্ডারটি গ্রহণ করা হয়েছে।</p>`;
+            if(!orderForm.checkValidity()){
+                orderForm.reportValidity();
+                return;
+            }
+            paymentModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            paymentModal.classList.add('hidden');
+        });
+
+        paymentOptionsContainer.addEventListener('click', (e) => {
+            const selectedOption = e.target.closest('.payment-option');
+            if(selectedOption){
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+                selectedOption.classList.add('selected');
+                selectedPaymentMethod = selectedOption.dataset.method;
+            }
+        });
+
+        confirmPaymentBtn.addEventListener('click', () => {
+            if(!selectedPaymentMethod){
+                alert('অনুগ্রহ করে একটি পেমেন্ট পদ্ধতি বেছে নিন।');
+                return;
+            }
+            
+            const customerName = document.getElementById('customer-name').value;
+            let message = `ধন্যবাদ, ${customerName}! আপনার অর্ডারটি গ্রহণ করা হয়েছে।`;
+            if (selectedPaymentMethod === 'cod') {
+                message += ' খাবার পৌঁছানোর সময় টাকা দেবেন।';
+            } else {
+                message += ' আপনার পেমেন্ট সফল হয়েছে।';
+            }
+            orderFormMessage.innerHTML = `<p class="text-green-600 font-semibold">${message}</p>`;
+
             cart = [];
             updateCartDisplay();
             orderForm.reset();
-            setTimeout(() => { orderFormMessage.innerHTML = ''; }, 5000);
+            paymentModal.classList.add('hidden');
+            selectedPaymentMethod = null;
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            setTimeout(() => { orderFormMessage.innerHTML = ''; }, 7000);
         });
 
         const mobileMenuButton = document.getElementById('mobile-menu-button');
