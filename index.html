@@ -24,7 +24,7 @@
             cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="6" stroke="%23D97706" stroke-width="2" fill="%23F59E0B" fill-opacity="0.5"/></svg>') 12 12, auto;
         }
         /* Pointer cursor for interactive elements */
-        a, button, .menu-filter-btn, input[type="radio"], .cursor-pointer {
+        a, button, input[type="radio"], .cursor-pointer {
             cursor: pointer;
         }
         .hero-bg {
@@ -85,6 +85,24 @@
         .btn-secondary:hover {
             background-color: #D97706;
             color: #FFFFFF;
+        }
+        /* New Menu Filter Button Styles */
+        .menu-filter-btn {
+            background-color: #FFFFFF;
+            color: #334155; /* Slate-700 */
+            border: 1px solid #E2E8F0; /* Slate-200 */
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px; /* rounded-full */
+            transition: all 0.3s ease-in-out;
+            font-weight: 500;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+        .menu-filter-btn.active, .menu-filter-btn:hover {
+            background-image: linear-gradient(to right, #3B82F6, #2563EB); /* Blue gradient */
+            color: #FFFFFF;
+            border-color: transparent;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transform: translateY(-2px);
         }
         .section-title {
             color: #0F172A; /* Darkest Slate */
@@ -153,11 +171,11 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold text-center mb-12 section-title">আমাদের জিভে জল আনা মেনু</h2>
                 <div class="flex justify-center flex-wrap gap-4 mb-10">
-                    <button class="menu-filter-btn btn-secondary py-2 px-6 rounded-full active" data-filter="all">সব দেখুন</button>
-                    <button class="menu-filter-btn btn-secondary py-2 px-6 rounded-full" data-filter="starter">স্টার্টার</button>
-                    <button class="menu-filter-btn btn-secondary py-2 px-6 rounded-full" data-filter="main">প্রধান ডিশ</button>
-                    <button class="menu-filter-btn btn-secondary py-2 px-6 rounded-full" data-filter="dessert">ডেজার্ট</button>
-                    <button class="menu-filter-btn btn-secondary py-2 px-6 rounded-full" data-filter="drinks">পানীয়</button>
+                    <button class="menu-filter-btn active" data-filter="all">সব দেখুন</button>
+                    <button class="menu-filter-btn" data-filter="starter">স্টার্টার</button>
+                    <button class="menu-filter-btn" data-filter="main">প্রধান ডিশ</button>
+                    <button class="menu-filter-btn" data-filter="dessert">ডেজার্ট</button>
+                    <button class="menu-filter-btn" data-filter="drinks">পানীয়</button>
                 </div>
                 <div id="menu-items" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 </div>
@@ -324,7 +342,7 @@
                     <h3 class="text-lg font-semibold text-white mb-4">আমাদের ফলো করুন</h3>
                     <div class="flex space-x-4">
                         <a href="#" aria-label="Facebook" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
-                        <a href="#" aria-label="Instagram" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427.465C9.53 2.013 9.884 2 12.315 2zM12 7.177a4.823 4.823 0 100 9.646 4.823 4.823 0 000-9.646zm0 7.661a2.838 2.838 0 110-5.676 2.838 2.838 0 010 5.676zm4.905-7.854a1.148 1.148 0 10-2.296 0 1.148 1.148 0 002.296 0z" clip-rule="evenodd" /></svg></a>
+                        <a href="#" aria-label="Instagram" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7.177a4.823 4.823 0 100 9.646 4.823 4.823 0 000-9.646zm0 7.661a2.838 2.838 0 110-5.676 2.838 2.838 0 010 5.676zm4.905-7.854a1.148 1.148 0 10-2.296 0 1.148 1.148 0 002.296 0z" clip-rule="evenodd" /></svg></a>
                     </div>
                 </div>
             </div>
@@ -438,17 +456,13 @@
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active', 'btn-primary'));
-                filterButtons.forEach(btn => { if(!btn.classList.contains('active')) btn.classList.add('btn-secondary'); });
-                button.classList.add('active', 'btn-primary');
-                button.classList.remove('btn-secondary');
+                document.querySelector('.menu-filter-btn.active').classList.remove('active');
+                button.classList.add('active');
                 const filter = button.dataset.filter;
                 const filteredItems = filter === 'all' ? menuData : menuData.filter(item => item.category === filter);
                 displayMenuItems(filteredItems);
             });
         });
-        document.querySelector('.menu-filter-btn[data-filter="all"]').classList.remove('btn-secondary');
-        document.querySelector('.menu-filter-btn[data-filter="all"]').classList.add('btn-primary');
         
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
